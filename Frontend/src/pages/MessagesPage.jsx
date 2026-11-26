@@ -130,7 +130,7 @@ export default function MessagesPage() {
         <p className="mt-1 text-sm text-slate-500">{t('Stay in touch with buyers and sellers.')}</p>
       </header>
 
-      <section className="grid min-h-[65vh] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm md:grid-cols-[320px_1fr] dark:border-slate-800 dark:bg-slate-900">
+      <section className="grid min-h-[55vh] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm md:min-h-[65vh] md:grid-cols-[320px_minmax(0,1fr)] dark:border-slate-800 dark:bg-slate-900">
         <aside className="border-b border-slate-200 md:border-b-0 md:border-e dark:border-slate-800">
           <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 dark:border-slate-800">
             <b className="text-sm dark:text-white">{t('Inbox')}</b>
@@ -182,7 +182,7 @@ export default function MessagesPage() {
           )}
         </aside>
 
-        <div className="flex min-h-[55vh] flex-col">
+        <div className="flex min-h-[42vh] min-w-0 flex-col md:min-h-0">
           {active || target ? (
             <>
               <div className="flex items-center gap-3 border-b border-slate-100 px-5 py-4 dark:border-slate-800">
