@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Bell, LogOut, Menu, Moon, Plus, ShieldCheck, Sun, UserRound, X } from 'lucide-react';
+import { Bell, CarFront, Compass, Heart, LogOut, Menu, MessageCircle, Moon, Plus, ShieldCheck, Sun, UserRound, X } from 'lucide-react';
 import { useAuth } from '../features/auth/AuthContext';
 import { useToast } from '../app/ToastContext';
 import CreateListingModal from '../features/marketplace/CreateListingModal';
@@ -10,10 +10,10 @@ import { getUnreadMessages } from '../features/messages/messagesApi';
 
 // Layout
 const navItems = [
-  ['/', 'Discover'],
-  ['/saved', 'Saved'],
-  ['/my-listings', 'My listings'],
-  ['/messages', 'Messages'],
+  ['/', 'Discover', Compass],
+  ['/saved', 'Saved', Heart],
+  ['/my-listings', 'My listings', CarFront],
+  ['/messages', 'Messages', MessageCircle],
 ];
 
 export default function AppLayout() {
@@ -72,16 +72,16 @@ export default function AppLayout() {
       : toast(t('You are all caught up'));
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen bg-slate-50 pb-20 font-sans text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100 lg:pb-0">
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/95">
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
-          <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="Motrly home">
+        <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-3 sm:h-[72px] sm:gap-6 sm:px-6 lg:px-8">
+          <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3" aria-label="Motrly home">
             <span className="grid size-10 place-items-center rounded-2xl bg-amber-400 text-slate-950 shadow-lg shadow-slate-950/15">
               <img src="/motrly-mark.svg" alt="" className="size-6" />
             </span>
-            <span className="text-xl font-black tracking-tight">
+            <span className="text-lg font-black tracking-tight sm:text-xl">
               motrly<span className="text-amber-500">.</span>
-              <small className="block text-[9px] font-bold uppercase tracking-[.2em] text-slate-400">
+              <small className="hidden text-[9px] font-bold uppercase tracking-[.2em] text-slate-400 sm:block">
                 {t('VEHICLE MARKETPLACE')}
               </small>
             </span>
@@ -164,7 +164,7 @@ export default function AppLayout() {
             <button
               onClick={() => setMobileOpen((open) => !open)}
               className="grid size-10 place-items-center rounded-xl border border-slate-200 lg:hidden dark:border-slate-800"
-              aria-label={t('Open menu')}
+              aria-label={t(mobileOpen ? 'Close menu' : 'Open menu')}
             >
               {mobileOpen ? <X size={19} /> : <Menu size={19} />}
             </button>
@@ -241,6 +241,30 @@ export default function AppLayout() {
           </div>
         )}
       </header>
+      <nav
+        aria-label={t('Primary navigation')}
+        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200/90 bg-white/95 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_-20px_rgba(15,23,42,.35)] backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/95 lg:hidden"
+      >
+        {navItems.map(([to, title, Icon]) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={to === '/'}
+            className={({ isActive }) =>
+              `flex min-w-0 flex-col items-center gap-1 rounded-xl px-1 py-1.5 text-[10px] font-bold transition ${isActive ? 'text-amber-700 dark:text-amber-300' : 'text-slate-500 dark:text-slate-400'}`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <span className={`grid size-8 place-items-center rounded-xl ${isActive ? 'bg-amber-100 dark:bg-amber-300/15' : ''}`}>
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                </span>
+                <span className="max-w-full truncate">{t(title)}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
+      </nav>
       <Outlet context={{ openPost: () => setPostOpen(true), toast }} />
       <footer className="mt-16 border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
