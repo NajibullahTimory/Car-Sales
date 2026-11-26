@@ -172,8 +172,8 @@ export default function MarketplacePage() {
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-amber-300">
               <Sparkles size={14} />{t('MOTRLY VEHICLE MARKETPLACE')}
             </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl">
-              {t('Millions of possibilities.')}<br />
+            <h1 className="mt-4 max-w-3xl text-3xl font-black leading-tight tracking-tight sm:mt-5 sm:text-5xl sm:leading-[1.05]">
+              {t('Millions of possibilities.')}<br className="hidden sm:block" />
               <span className="text-amber-300">{t('One simple search.')}</span>
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
@@ -189,8 +189,8 @@ export default function MarketplacePage() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-2 rounded-2xl bg-white p-2 shadow-xl shadow-black/20 md:grid-cols-[1.5fr_1fr_.8fr_.8fr_auto] dark:bg-slate-900">
-          <label className="flex h-12 items-center gap-3 rounded-xl px-3 text-slate-400 focus-within:bg-slate-50 dark:focus-within:bg-slate-800">
+        <div className="mt-6 grid grid-cols-2 gap-2 rounded-2xl bg-white p-2 shadow-xl shadow-black/20 sm:mt-8 md:grid-cols-[1.5fr_1fr_.8fr_.8fr_auto] dark:bg-slate-900">
+          <label className="col-span-2 flex h-12 min-w-0 items-center gap-3 rounded-xl px-3 text-slate-400 focus-within:bg-slate-50 dark:focus-within:bg-slate-800 md:col-span-1">
             <Search size={18} />
             <input
               value={query}
@@ -199,7 +199,7 @@ export default function MarketplacePage() {
               className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
             />
           </label>
-          <label className="flex h-12 items-center gap-2 rounded-xl bg-slate-50 px-3 text-slate-500 dark:bg-slate-800">
+          <label className="col-span-2 flex h-12 min-w-0 items-center gap-2 rounded-xl bg-slate-50 px-3 text-slate-500 dark:bg-slate-800 md:col-span-1">
             <MapPin size={16} />
             <select
               value={province}
@@ -215,7 +215,7 @@ export default function MarketplacePage() {
             type="number"
             min="0"
             placeholder={t('Min price')}
-            className="h-12 rounded-xl bg-slate-50 px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400/40 dark:bg-slate-800 dark:text-white"
+            className="h-12 min-w-0 rounded-xl bg-slate-50 px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400/40 dark:bg-slate-800 dark:text-white"
           />
           <input
             value={maxPrice}
@@ -223,12 +223,12 @@ export default function MarketplacePage() {
             type="number"
             min="0"
             placeholder={t('Max price')}
-            className="h-12 rounded-xl bg-slate-50 px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400/40 dark:bg-slate-800 dark:text-white"
+            className="h-12 min-w-0 rounded-xl bg-slate-50 px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400/40 dark:bg-slate-800 dark:text-white"
           />
           <button
             type="button"
             onClick={() => document.getElementById('vehicle-results')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex h-12 items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 text-sm font-extrabold text-slate-950 hover:bg-amber-300"
+            className="col-span-2 flex h-12 items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 text-sm font-extrabold text-slate-950 hover:bg-amber-300 md:col-span-1"
           >
             <Search size={17} /><span className="hidden lg:inline">{t('Find vehicles')}</span>
           </button>
