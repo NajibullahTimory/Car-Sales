@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme { --font-sans: "Inter Variable", "Noto Sans Arabic Variable", "Segoe UI", sans-serif; }
+
+/* لاتین با Inter و دری/پښتو با فونت عربی خواناتر نمایش داده می‌شوند. */
+:root:lang(fa),
+:root:lang(ps) {
+  --font-sans: "Noto Sans Arabic Variable", "Inter Variable", "Segoe UI", sans-serif;
+}
+
+/* فاصله‌گذاری تزئینی لاتین در نوشته‌های دری و پشتو روی حروف نمی‌افتد. */
+:root:lang(fa) [class*="tracking-"],
+:root:lang(ps) [class*="tracking-"] {
+  letter-spacing: normal;
+}
+
+:root:lang(fa) :is(h1, h2, h3),
+:root:lang(ps) :is(h1, h2, h3) {
+  line-height: 1.35;
+}
+
+:root { color-scheme: light; }
+:root.dark { color-scheme: dark; }
+
+/* رنگ نوشته و caret در textarea با تغییر تم صریح تنظیم می‌شود. */
+@layer base {
+  textarea {
+    color: #0f172a;
+    caret-color: #0f172a;
+  }
+
+  textarea::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+  }
+
+  :root.dark textarea {
+    color: #f8fafc;
+    caret-color: #f8fafc;
+  }
+
+  :root.dark textarea::placeholder {
+    color: #64748b;
+  }
+}

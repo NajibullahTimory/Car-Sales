@@ -1,0 +1,16 @@
+# Dependencies and package caches
+**/node_modules/
+**/.npm-cache/
+
+# Local environment variables and secrets
+**/.env
+**/.env.*.local
+
+# Build outputs
+**/dist/
+**/build/
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
